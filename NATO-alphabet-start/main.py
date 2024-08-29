@@ -8,17 +8,16 @@ nato_df = pd.read_csv(nato)
 nato_dict = {row.letter : row.code for (index, row) in nato_df.iterrows()}
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-def gen_phonetic():
-    phonetics = []
-    while len(phonetics) == 0: 
+def gen_phonetic(): 
         try:
             words = input("Enter word to convert from:\n")
             phonetics = [nato_dict[letter.upper()] for letter in words if letter.upper()]
         except KeyError:
             print("Sorry, only letters in the alphabet please")
+            gen_phonetic()
         else:
             print(phonetics)
-            return 
+            return phonetics 
 
 gen_phonetic()
 
